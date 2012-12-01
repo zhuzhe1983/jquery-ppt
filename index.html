@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://cn.yimg.com/js/jquery/jquery-1.6.4.min.js"></script>
+    <style type="text/css">
+        .stage{position: absolute;left:0;top:0;width:400px;height: 300px;}
+        .stage *{position: relative;}
+    </style>
+</head>
+<body>
+    <div id="stage1" class="stage" style="display:none;background:pink;" effect="fadeIn" duration="1000" delay="1000">
+        <div id="logo" style="display:none;" effect="slideDown" duration="500" delay="2000">
+            <img src="http://cn.yimg.com/yhp/20100208/yahoologo.png" />
+        </div>
+        <h1 id="slogon" style="display:none;" effect="slideDown" duration="500" delay="3000">YAHOO~</h1>
+    </div>
+    <div id="stage2" class="stage" style="display:none;background:pink;" effect="fadeIn" duration="1000" delay="4000">
+        <h1 id="header" style="display:none;" effect="fadeIn" duration="500" delay="5000">YAHOO~ HEADER2</h1>
+        <p id="content1" style="display:none;" effect="fadeIn" duration="500" delay="6000" hide="3500">
+            content1,content1,content1,content1,content1,content1,content1,content1,content1,
+        </p>
+        <p id="content2" style="display:none;" effect="fadeIn" duration="500" delay="10000">
+            content2,content2,content2,content2,content2,content2,content2,content2,content2,
+        </p>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("[effect]").each(function(i,o){
+                var str = '$(o)';
+                if($(o).attr('delay')){
+                    var delay = $(o).attr('delay');
+                    str += ".delay("+delay+")";
+                }
+
+                if($(o).attr('effect')){
+                    var effect = $(o).attr('effect');
+                    str += "."+effect+"(";
+                }
+
+                if($(o).attr('duration')){
+                    var duration = $(o).attr('duration');
+                    str += duration;
+                }
+
+                if($(o).attr('easing')){
+                    var easing = $(o).attr('easing');
+                    str += ",'" + easing +"'";
+                }
+
+                if($(o).attr('effect')){
+                    str += ")";
+                }
+
+                if($(o).attr('hide')){
+                    var hide = $(o).attr('hide');
+                    str += ".delay(" + hide +").hide(0)";
+                }
+
+                str += ";";
+
+                try{
+                    eval(str);
+                }catch (e){
+                    console.log(e);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
